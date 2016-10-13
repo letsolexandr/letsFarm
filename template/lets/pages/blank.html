@@ -411,7 +411,7 @@
 
             <link rel="stylesheet" href="../../../static/lets/leaflet/leaflet.css" />
     <script src="../../../static/lets/leaflet/leaflet.js"></script>
-    <script src="../../../static/lets/leaflet/leaflet.js"></script>
+    <script src="../../../static/lets/leaflet/MovingMarker.js"></script>
         <script>
             $('#map').css('width',$(".row").css('width'));
             $('#map').css('height',$("#page-wrapper").css('height'));
@@ -498,7 +498,7 @@
 
             
             var marker2 = L.Marker.movingMarker(listCor,
-    1000, {autostart: true}).addTo(map);
+    [100000], {autostart: true}).addTo(mymap);
 
       
     </script>
