@@ -25,8 +25,7 @@
 
 
 
-    <link rel="stylesheet" href="../../../static/lets/leaflet/leaflet.css" />
-    <script src="../../../static/lets/leaflet/leaflet.js"></script>
+
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -406,6 +405,13 @@
 
         <!-- Custom Theme JavaScript -->
         <script src="../../../static/lets/dist/js/sb-admin-2.js"></script>
+
+
+
+
+            <link rel="stylesheet" href="../../../static/lets/leaflet/leaflet.css" />
+    <script src="../../../static/lets/leaflet/leaflet.js"></script>
+    <script src="../../../static/lets/leaflet/leaflet.js"></script>
         <script>
             $('#map').css('width',$(".row").css('width'));
             $('#map').css('height',$("#page-wrapper").css('height'));
@@ -490,50 +496,13 @@
             [50.303757, 30.330528, 26.4210635476919],
             [50.31387, 30.325769, 26.5992850127883]];
 
-            var listCorSlise=listCor.slice();
+            
+            var marker2 = L.Marker.movingMarker(listCor,
+    1000, {autostart: true}).addTo(map);
 
-            function getRandomLatLng(map) {
-                var bounds = map.getBounds(),
-                southWest = bounds.getSouthWest(),
-                northEast = bounds.getNorthEast(),
-                lngSpan = northEast.lng - southWest.lng,
-                latSpan = northEast.lat - southWest.lat;
-
-                return new L.LatLng(
-                    southWest.lat + latSpan * Math.random(),
-                    southWest.lng + lngSpan * Math.random());
-            }
-
-            var add = function(coords){
-
-                var marker = L.marker(coords);
-                markers.addLayer(marker)
-                mymap.addLayer(markers);
-            };
-            var remove = function(){
-              markers.clearLayers()
-          };
-
-          var m = function(listCorSlise){
-            listCorSlise=listCorSlise.pop();
-            coords=listCorSlise.slice(0,2)
-            remove();
-            add(coords);
-
-
-        }
+      
     </script>
-    <script>
 
-        
-
-        listCorSlise.forEach(
-            function(item, i, arr) {
-
-            setTimeout(console.log,200,item, i);
-      });
-
-  </script>
 </body>
 
 </html>
