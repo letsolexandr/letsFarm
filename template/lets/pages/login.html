@@ -10,18 +10,21 @@
     <meta name="author" content="">
 
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
-
+	
     <!-- Bootstrap Core CSS -->
-    <link href="../../../static/lets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    {% load static from staticfiles %}
+    
+    
+    <link href="https://cdn.rawgit.com/letsolexandr/static/master/lets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../../../static/lets/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="https://cdn.rawgit.com/letsolexandr/static/master/lets/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../../../static/lets/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="https://raw.githubusercontent.com/letsolexandr/static/master/lets/dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../../../static/lets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.rawgit.com/letsolexandr/static/master/lets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -42,10 +45,10 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form role="form" action="../login_valid/" method="post">{% csrf_token %}
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                    <input class="form-control" placeholder="Username" name="username" type="username" autofocus>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" name="password" type="password" value="">
@@ -56,7 +59,7 @@
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>
+                                <input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
                             </fieldset>
                         </form>
                     </div>
@@ -66,16 +69,16 @@
     </div>
 
     <!-- jQuery -->
-    <script src="../../../static/lets/vendor/jquery/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/letsolexandr/static/master/lets/vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../../../static/lets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdn.rawgit.com/letsolexandr/static/master/lets/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../../../static/lets/vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="https://cdn.rawgit.com/letsolexandr/static/master/lets/vendor/metisMenu/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="../../../static/lets/dist/js/sb-admin-2.js"></script>
+    <script src="https://cdn.rawgit.com/letsolexandr/static/master/lets/dist/js/sb-admin-2.js"></script>
 
 </body>
 

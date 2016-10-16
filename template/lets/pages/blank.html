@@ -377,10 +377,10 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">Трахторець</h1>
+                           <!--<h1 class="page-header">Трахторець</h1>-->
                             <div class="row" id ="map">
-
-
+                            </div>
+                            <div class="row" id ="chartContainer">
                             </div>
                         </div>
                         <!-- /.col-lg-12 -->
@@ -412,95 +412,159 @@
             <link rel="stylesheet" href="../../../static/lets/leaflet/leaflet.css" />
     <script src="../../../static/lets/leaflet/leaflet.js"></script>
     <script src="../../../static/lets/leaflet/MovingMarker.js"></script>
+    <script src="../../../static/lets/canvasjs-1.9.2/jquery.canvasjs.min.js"></script>
+    
+    <script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
+    <script src="http://matchingnotes.com/javascripts/leaflet-google.js"></script>
+    
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Promise"></script>
+    <script src="http://gmaclennan.github.io/leaflet-bing-layer/leaflet-bing-layer.js"></script>
         <script>
+        	var height = $("#page-wrapper").height()-200+"px";
             $('#map').css('width',$(".row").css('width'));
-            $('#map').css('height',$("#page-wrapper").css('height'));
-        </script>
+            $('#map').css('height',height);
+            
+            $('#chartContainer').css('width',$(".row").css('width'));
+            $('#chartContainer').css('height',"200px");
 
-        <script>
-
-
-
-            var mymap = L.map('map').setView([50.31387, 30.325769], 13);
-
-            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(mymap);
+            var mymap = L.map('map').setView([50.044301, 30.036975], 15);
 
 
-            L.circle([51.508, -0.11], {
-                color: 'red',
-                fillColor: '#f03',
-                fillOpacity: 0.5,
-                radius: 500
-            }).addTo(mymap);
+            var BING_KEY = 'AuhiCJHlGzhg93IqUH_oCpl_-ZUrIE6SPftlyGYUvr9Amx5nzA-WqGcPquyFZl4L';
+            var bingLayer = L.tileLayer.bing(BING_KEY).addTo(mymap);
+            
+            
 
-            L.polygon([
-                [51.509, -0.08],
-                [51.503, -0.06],
-                [51.51, -0.047]
-                ]).addTo(mymap);
+
 
             var markers = new L.FeatureGroup();
-        </script>
 
-
-
-
-        <script>
-
-            var listCor=[[50.323983, 30.326364, 25.9282994999111],
-            [50.33469, 30.332908, 30.3266660405391],
-            [50.343613, 30.338262, 25.7412477691834],
-            [50.352536, 30.34421, 29.9563836537947],
-            [50.358485, 30.351349, 31.3842329153671],
-            [50.363839, 30.363841, 32.0765335905819],
-            [50.368597, 30.372764, 30.0757804893835],
-            [50.37752, 30.378712, 25.3804639066283],
-            [50.384659, 30.384066, 27.3927541553553],
-            [50.392987, 30.387635, 30.0921648299385],
-            [50.39953, 30.392989, 25.7099835483263],
-            [50.407264, 30.398343, 29.593738909732],
-            [50.407264, 30.398343, 32.5376221335561],
-            [50.42154, 30.409645, 31.3346121172678],
-            [50.429869, 30.417974, 29.6984725448881],
-            [50.429869, 30.417974, 28.0860380141341],
-            [50.438197, 30.426302, 31.0423607753913],
-            [50.445335, 30.43582, 29.7408884866901],
-            [50.451284, 30.444743, 27.2403766488663],
-            [50.453663, 30.453666, 32.0553651528113],
-            [50.452473, 30.465563, 30.5596990406539],
-            [50.44355, 30.467347, 31.4720309143691],
-            [50.436412, 30.467347, 33.1439997963334],
-            [50.424515, 30.470322, 33.0363633641332],
-            [50.414997, 30.470917, 33.8032479882082],
-            [50.407264, 30.472701, 25.7333629994696],
-            [50.395961, 30.474486, 30.9107740493767],
-            [50.385254, 30.474486, 25.6927762259081],
-            [50.373356, 30.474486, 34.77044461699],
-            [50.358485, 30.47984, 33.8031987841402],
-            [50.346587, 30.481624, 33.4794508906377],
-            [50.335285, 30.481029, 28.1308821432652],
-            [50.326362, 30.47627, 33.0084449216591],
-            [50.317439, 30.471511, 32.2443432644434],
-            [50.307921, 30.462588, 30.0217372865776],
-            [50.301973, 30.451881, 29.6617425187841],
-            [50.297808, 30.441768, 34.7820453873962],
-            [50.294834, 30.426302, 29.4307552696717],
-            [50.29067, 30.405481, 26.9656436734944],
-            [50.29067, 30.38823, 30.3968151532169],
-            [50.29067, 30.372169, 25.5651190044359],
-            [50.291265, 30.359082, 28.5887050787574],
-            [50.29186, 30.347185, 31.3949327984717],
-            [50.296024, 30.337072, 25.754156466599],
-            [50.303757, 30.330528, 26.4210635476919],
-            [50.31387, 30.325769, 26.5992850127883]];
+            var listCor=[[50.044301, 30.036975],
+            	[50.046659, 30.038649],
+            	[50.051619, 30.041968],
+            	[50.051544, 30.042379],
+            	[50.044207, 30.037239],
+            	[50.044113, 30.037621],
+            	[50.051487, 30.042761],
+            	[50.051317, 30.043261],
+            	[50.044094, 30.03812],
+            	[50.043924, 30.038532],
+            	[50.051242, 30.04376],
+            	[50.051091, 30.044289],
+            	[50.043848, 30.039031],
+            	[50.043679, 30.03953],
+            	[50.050978, 30.044729],
+            	[50.050884, 30.04514],
+            	[50.043641, 30.039942],
+            	[50.043471, 30.040411],
+            	[50.050676, 30.045552],
+            	[50.050544, 30.045992],
+            	[50.043415, 30.04097],
+            	[50.04332, 30.041704],
+            	[50.050488, 30.04655],
+            	[50.050393, 30.046932],
+            	[50.043245, 30.041998],
+            	[50.043188, 30.042291],
+            	[50.050261, 30.04749],
+            	[50.050205, 30.047931],
+            	[50.043, 30.04282],
+            	[50.042868, 30.043349],
+            	[50.050054, 30.048459],
+            	[50.049997, 30.048929],
+            	[50.042792, 30.043789],
+            	[50.042698, 30.044259],
+            	[50.049828, 30.04937],
+            	[50.049714, 30.049722],
+            	[50.042566, 30.044758],
+            	[50.042472, 30.04517],
+            	[50.049582, 30.050251],
+            	[50.049469, 30.05075],
+            	[50.042358, 30.045698],
+            	[50.042264, 30.046051],
+            	[50.049375, 30.05125],
+            	[50.049243, 30.051631],
+            	[50.042132, 30.046609],
+            	[50.041943, 30.047138],
+            	[50.049167, 30.05216],
+            	[50.048998, 30.052689],
+            	[50.041792, 30.047666],
+            	[50.041585, 30.04796],
+            	[50.048941, 30.053159],
+            	[50.048866, 30.053629],
+            	[50.041434, 30.048459],
+            	[50.041321, 30.048871],
+            	[50.048771, 30.054187],
+            	[50.048564, 30.054627],
+            	[50.04117, 30.04934],
+            	[50.040981, 30.050104],
+            	[50.04847,30.055244]];
+            
+            var parisKievLL = [[48.8567, 2.3508], [50.45, 30.523333]];
+            
 
             
-            var marker2 = L.Marker.movingMarker(listCor,
-    [100000], {autostart: true}).addTo(mymap);
+            var marker2 = L.Marker.movingMarker(listCor, [10000]).addTo(mymap);
+			
+      		
 
-      
+    		var dps = []; // dataPoints
+
+    		var chart = new CanvasJS.Chart("chartContainer",{
+    			title :{
+    				text: "Витрати палива л/100 км."
+    			},			
+    			data: [{
+    				type: "line",
+    				dataPoints: dps 
+    			}]
+    		});
+
+    		var xVal = 0;
+    		var yVal = 25;	
+    		var updateInterval = 1000;
+    		var dataLength = 500; // number of dataPoints visible at any point
+    		
+    		while(listCor.length>3){
+    			marker2.addLatLng(listCor.shift(), 20000);
+    			
+    		}
+    		
+    		marker2.start();
+    		var line=L.polyline([[50.044301, 30.036975],[marker2._latlng.lat, marker2._latlng.lng]]);
+    		line.addTo(mymap);
+    		
+    		var updateChart = function (count) {
+    			count = count || 1;
+    			
+    			// count is number of times loop runs to generate random dataPoints.
+    			
+    			for (var j = 0; j < count; j++) {	
+    				yVal = yVal +  Math.round(5 + Math.random() *(-5-5));
+    				dps.push({
+    					x: xVal,
+    					y: yVal
+    				});
+    				xVal++;
+    			};
+    			if (dps.length > dataLength)
+    			{
+    				dps.shift();				
+    			}
+    			
+    			chart.render();	
+    			line.addLatLng([marker2._latlng.lat, marker2._latlng.lng]);
+    			line.addTo(mymap);
+    			//var latlon=
+
+    		};
+
+    		// generates first set of dataPoints
+    		updateChart(dataLength); 
+
+    		// update chart after specified time. 
+    		setInterval(function(){updateChart()}, updateInterval); 
+            
+            
     </script>
 
 </body>
